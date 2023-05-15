@@ -42,6 +42,7 @@ In the console on the dashboard run the follwing - one at a time :
 ```
 PID_CALIBRATE HEATER=heater_bed TARGET=85
 PID_CALIBRATE HEATER=extruder TARGET=210
+SAVE_CONFIG
 ```
 
 Home axis :
@@ -51,4 +52,15 @@ G28
 Perform an probe calibration. Raise the bed with a piece of A4 paper between the bed and the nozzle until the paper is a little resistive and then accept.
 ```
 PROBE_CALIBRATE
+SAVE_CONFIG
+```
+Home again :
+```
+G28
+```
+At this point you can carefully raise the bed to say 70 in the Z direction to save a little time.
+Now z stop calibration :
+```
+Z_ENDSTOP_CALIBRATE
+SAVE_CONFIG
 ```
