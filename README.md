@@ -73,3 +73,5 @@ G91
 G1 E100 F60
 ```
 
+# for the developers
+The reference marlin code is available here : https://github.com/tronxy3d/F4xx-SIM480x320
