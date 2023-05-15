@@ -75,3 +75,16 @@ G1 E100 F60
 
 # for the developers
 The reference marlin code is available here : https://github.com/tronxy3d/F4xx-SIM480x320
+
+## Building the firmware
+```
+ssh pi@veho600.local
+cd klipper
+make menuconfig
+```
+Using the menu, select the following :
+* STMicroelectronics STM32
+* STM32F446
+* 64KiB bootloader
+* USB (on PA11/PA12)
+
