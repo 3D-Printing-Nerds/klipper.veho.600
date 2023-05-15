@@ -1,25 +1,30 @@
 [mcu]
-serial: /dev/serial/by-id/usb-1a86_USB_Serial-if00-port0 # find your own... ssh in then run [ cd klipper ] then [ ls /dev/serial/by-id  ]
+serial: /dev/serial/by-id/usb-1a86_USB_Serial-if00-port0
 restart_method: command
 
 [pause_resume]
+#recovery_velocity: 300
 
 [display_status]
 
 [virtual_sdcard]
 path: /home/pi/printer_data/gcodes
 
+#[include accelerometer.cfg]
 [include Filamentchange.cfg]
 [include mainsail.cfg]
 [include Macros.cfg]
+#[include start+end.cfg]
 [include tilt.cfg]
-[include timeout.cfg]
+#[include timeout.cfg]
 [include screwtilt.cfg]
 [include bed_screws.cfg]
 [include homing.cfg]
 #[include BL_Touch.cfg]
 [include respond.cfg]
-#[include accelerometer.cfg]
+#[include Verify Heater.cfg]
+#[include ERCF.cfg]
+#[include ERCF software.cfg]
 
 [printer]
 kinematics: cartesian
@@ -28,6 +33,11 @@ max_accel: 2000
 max_z_velocity: 50
 max_z_accel: 30
 
+#testing to see if I had access to swd pins as GPIO, it does
+#[output_pin testpin1]
+#pin: PA14
+#[output_pin testpin2]
+#pin: PA13
 
 [stepper_x]
 #
@@ -84,9 +94,6 @@ endstop_pin: !PC13
 
 # the safe z home code block below is commented out as there is a custom homing.cfg file attached
 
-# Not needed here for ref
-# custom homing in place
-
 #[safe_z_home]
 #home_xy_position: 300, 300
 #speed: 200
@@ -98,17 +105,17 @@ step_pin: PB1
 dir_pin: !PF13
 enable_pin: !PF14
 microsteps: 16
-rotation_distance: 22.172 # Needs to be tweaked with esteps
+rotation_distance: 22.172 # Needs to be tweaked
 gear_ratio: 50:17 #50:17 # BMG Clone ratio per klipper docs
 nozzle_diameter: 0.400
 filament_diameter: 1.750
 heater_pin: PG7
 sensor_type: ATC Semitec 104GT-2
 sensor_pin: PC3
-control: pid
-pid_Kp: 20.72
-pid_Ki: 1.88
-pid_Kd: 57.18
+#control: pid
+#pid_Kp: 20.72
+#pid_Ki: 1.88
+#pid_Kd: 57.18
 min_temp: 0
 max_temp: 300
 max_extrude_only_distance: 400
@@ -121,10 +128,10 @@ sensor_type: EPCOS 100K B57560G104F
 sensor_pin: PC2
 min_temp: 0
 max_temp: 150
-control: pid
-pid_Kp: 73.932
-pid_Ki: 1.521
-pid_Kd: 898.279
+#control: pid
+#pid_Kp: 73.932
+#pid_Ki: 1.521
+#pid_Kd: 898.279
 
 [heater_fan hotend_fan]
 heater: extruder
@@ -159,13 +166,9 @@ fade_start: 5
 fade_end: 15
 fade_target: 0
 
-# for the stock probe 
 #[probe]
 #x_offset: -38.5
 #y_offset:  10
 #pin: !PE3
 #speed: 30
 #z_offset: 5.085
-
-#*# <---------------------- SAVE_CONFIG ---------------------->
-#*# DO NOT EDIT THIS BLOCK OR BELOW. The contents are auto-generated.
