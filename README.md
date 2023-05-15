@@ -64,3 +64,12 @@ Now z stop calibration :
 Z_ENDSTOP_CALIBRATE
 SAVE_CONFIG
 ```
+# rotation distance
+NOTE : I CAN'T GET THE EXTRUDER TO EXTRUDE HERE YET
+Use the webapp interface to specify your extruder heat - say 200 degrees C for PLA.
+From a known edge point, mark out 120 mm on the pla line. Now extrude 100mm of filament :
+```
+G91
+G1 E100 F60
+```
+
