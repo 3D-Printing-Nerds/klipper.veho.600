@@ -26,7 +26,7 @@ Now in the webapp, go to "MACHINE" and restart klipper.
 
 # install the fw
 
-Copy the update directory to an sdcard. Turn off the printer power, put in the sdcard and turn it on again. The boot splash shows and it reports "Burn: FNW)TR 1.BIN" or somethign similar in the lower left hand corner.
+Copy the update directory to an sdcard. Turn off the printer power, put in the sdcard and turn it on again. The boot splash shows and it reports "Burn: FNW TR 1.BIN" or somethign similar in the lower left hand corner.
 Turn off the printer and remove the sdcard. Turn the printer on again. Now it should reports "Initializing..." and stays that way.
 
 Reload your webapp and you should see the mcu reporting something like the following :
@@ -34,4 +34,17 @@ Reload your webapp and you should see the mcu reporting something like the follo
 mcu(stm32f446xx)
 Version: v0.11.0-197-ga3eebab4
 Load: 0.00, Awake: 0.00, Freq: 180 MHz,
+```
+
+# PID tuning
+
+In the console on the dashboard run the follwing - one at a time :
+```
+PID_CALIBRATE HEATER=heater_bed TARGET=85
+
+PID_CALIBRATE HEATER=extruder TARGET=210
+
+Z_ENDSTOP_CALIBRATE
+
+PROBE_CALIBRATE
 ```
