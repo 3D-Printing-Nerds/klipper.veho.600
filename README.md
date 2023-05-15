@@ -14,3 +14,24 @@ Go to http://veho600.local and then the machine link give it some time to refres
 I route myself to  : sftp://pi@veho600.local/home/pi/printer_data/config
 Dump all the cfg files to that location.
 
+# setup printer config
+
+Copy the config files over :
+```
+cd klipper.veho-600/config
+scp *  pi@veho600.local:printer_data/config/
+```
+
+Now in the webapp, go to "MACHINE" and restart klipper.
+
+# install the fw
+
+Copy the update directory to an sdcard. Turn off the printer power, put in the sdcard and turn it on again. The boot splash shows and it reports "Burn: FNW)TR 1.BIN" or somethign similar in the lower left hand corner.
+Turn off the printer and remove the sdcard. Turn the printer on again. Now it should reports "Initializing..." and stays that way.
+
+Reload your webapp and you should see the mcu reporting something like the following :
+```
+mcu(stm32f446xx)
+Version: v0.11.0-197-ga3eebab4
+Load: 0.00, Awake: 0.00, Freq: 180 MHz,
+```
