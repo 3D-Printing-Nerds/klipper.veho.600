@@ -86,6 +86,10 @@ In the extruder 1 tab, set the nozzle size (veho-600 comes with stock 0.6 mm and
 
 Click "Profiles" and "Import Profiles".
 
+### Changing nozzle sizes
+
+* Manage printers -> machine settings -> Extruder 1 -> Nozzle Size = 0.8 mm
+
 # for the developers
 The reference marlin code is available here : https://github.com/tronxy3d/F4xx-SIM480x320
 
