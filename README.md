@@ -87,4 +87,7 @@ Using the menu, select the following :
 * STM32F446
 * 64KiB bootloader
 * USB (on PA11/PA12)
-
+You're now ready to build. Press 'Q' and 'Y' to exit and save. Now :
+```
+make
+```
