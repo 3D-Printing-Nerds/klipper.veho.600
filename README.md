@@ -1,7 +1,7 @@
 # klipper.veho-600
 
 # Installation on the embedded system
-In this example a Raspberry Pi will be used, however you can use other embedded systems which are supported by mainsail. 
+In this example a Raspberry Pi will be used, however you can use other embedded systems which are supported by mainsail.
 
 Install the Pi with 32 bit os lite. I used rpi-imager (for the first time) and also setup ssh access without passwords (using my rsa-id.pub). Setup your wifi if you need it.
 
@@ -73,6 +73,18 @@ G1 E100 F60
 ```
 I noted that after extrusion 17mm was left from 120mm. Got to this link : https://www.service-uplink.de/esteps_cal/calculator.php
 I would put in "actual extrude distance" of 103, "requested extrude distance" of 100. Looking in printer.cfg, I can see that the original rotation distance was 22.172 mm. The calculator tells me to put 22.837 mm as the new rotation distamnce.
+
+# Slicer settings
+
+## Cura
+
+Add a new Custom FFF printer. Set X, Y, Z sizes to 600 mm. Select "Heated Bed".
+
+Copy the slicer.cura/Start__End_Code.txt start code to the "Start G-Code" box. Copy the end code to the "End G-Code" box.
+
+In the extruder 1 tab, set the nozzle size (veho-600 comes with stock 0.6 mm and a 0.8 mm in the bag). Set the compatible material diameter to 1.75 mm.
+
+Click "Profiles" and "Import Profiles".
 
 # for the developers
 The reference marlin code is available here : https://github.com/tronxy3d/F4xx-SIM480x320

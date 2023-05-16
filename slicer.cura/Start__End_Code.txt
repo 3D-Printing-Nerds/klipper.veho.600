@@ -1,0 +1,43 @@
+; VEHO-600 Custom Start G-code
+M117 Getting the bed up to temp!
+M140 S{material_bed_temperature_layer_0} ; Set Heat Bed temperature
+M190 S{material_bed_temperature_layer_0} ; Wait for Heat Bed temperature
+M117 Pre-heating the extruder!
+M104 S160; start warming extruder to 160
+G28 ; Home all axes
+M117 Auto Z-level GO!
+Z_TILT_ADJUST ; Auto Z-level
+SET_VELOCITY_LIMIT ACCEL_TO_DECEL=1000
+SET_VELOCITY_LIMIT ACCEL=2000
+M117 Auto bed-level GO!
+BED_MESH_CALIBRATE ; Auto bed-level (BL-Touch)
+G92 E0 ; Reset Extruder
+M117 Getting the extruder up to temp!
+M104 S{material_print_temperature_layer_0} ; Set Extruder temperature
+M109 S{material_print_temperature_layer_0} ; Wait for Extruder temperature
+M117 execute order 66 ; Jedi Purge Line
+G1 Z10.0 F3000 ; Move Z Axis up little to prevent scratching of Heat Bed
+G1 X5.1 Y20 Z0.3 F5000.0 ; move to start-line position
+G1 X5.1 Y400.0 Z0.3 F1500.0 E30 ; Draw the first line
+G1 X5.4 Y400.0 Z0.3 F5000.0 ; Move to side a little
+G1 X5.4 Y20 Z0.3 F1500.0 E30 ; Draw the second line
+M117 The Sith Shal Rule Again!
+; End of custom start GCode
+
+
+; VEHO-600 Custom End G-code
+G91 ;Relative positioning
+G1 E-2 F2700 ;Retract a bit
+G1 E-2 Z20 F2400 ;Retract and raise Z
+G1 X5 Y5 F3000 ;Wipe out
+G1 Z10 ;Raise Z more
+G90 ;Absolute positioning
+
+G1 X0 Y600 ;Present print
+M106 S0 ;Turn-off fan
+M104 S0 ;Turn-off hotend
+M140 S0 ;Turn-off bed
+
+;M84 X Y E ;Disable all steppers but Z 
+M117 Finished My Master!
+; End of custom End GCode
