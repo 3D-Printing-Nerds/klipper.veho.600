@@ -73,8 +73,7 @@ M91
 G1 E100 F60
 ```
 I noted that after extrusion 17mm was left from 120mm. Got to this link : https://www.service-uplink.de/esteps_cal/calculator.php
-I would put in "actual extrude distance" of 103, "requested extrude distance" of 100.
-
+I would put in "actual extrude distance" of 103, "requested extrude distance" of 100. Looking in printer.cfg, I can see that the original rotation distance was 22.172 mm. The calculator tells me to put 22.837 mm as the new rotation distamnce.
 
 # for the developers
 The reference marlin code is available here : https://github.com/tronxy3d/F4xx-SIM480x320
