@@ -90,6 +90,14 @@ Click "Profiles" and "Import Profiles".
 
 * Manage printers -> machine settings -> Extruder 1 -> Nozzle Size = 0.8 mm
 
+# Calibrating and problem solving 
+
+## Getting your first layer right
+
+Get a standard cube from the cura "calibration shapes" plugin. Make the following properties :
+* scaling x, y, z = 300%, 300%, 1.5%
+* initial layer height of 0.3
+
 # for the developers
 The reference marlin code is available here : https://github.com/tronxy3d/F4xx-SIM480x320
 
