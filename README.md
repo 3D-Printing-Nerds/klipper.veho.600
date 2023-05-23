@@ -118,7 +118,7 @@ lrwxrwxrwx 1 root root 13 May 23 22:12 usb-1a86_USB_Serial-if00-port0 -> ../../t
 total 0
 lrwxrwxrwx 1 root root 13 May 23 22:12 platform-3f980000.usb-usb-0:1.2:1.0-port0 -> ../../ttyUSB0
 ```
-### Working out if the device is present
+### Working out if the 3d printer device is present
 Apart from using the above commands to see if the device is present, I cna use the lsusb command to see what USB devices are on the system. First I will look at the devices with the USB unplugged :
 ```
 pi@veho600:~ $ lsusb
