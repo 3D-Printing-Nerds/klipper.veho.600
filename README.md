@@ -91,7 +91,7 @@ Click "Profiles" and "Import Profiles".
 * Manage printers -> machine settings -> Extruder 1 -> Nozzle Size = 0.8 mm
 
 # Calibrating and problem solving 
-## finding the serial device
+## Finding the serial device
 
 On this system, the serial device is connected with USB. The standard mac and Linux commands to look at the usb devices is lsusb. When the device is plugged in it will appear on the system in the path /dev/ttyUSB* where * is the number. If I long list all ttyUSB* devices on my system I get the one serial USB device which is on my printer (using the ```ls -l /dev/ttyUSB*``` command) and this is what it looks like :
 ```
@@ -118,7 +118,7 @@ lrwxrwxrwx 1 root root 13 May 23 22:12 usb-1a86_USB_Serial-if00-port0 -> ../../t
 total 0
 lrwxrwxrwx 1 root root 13 May 23 22:12 platform-3f980000.usb-usb-0:1.2:1.0-port0 -> ../../ttyUSB0
 ```
-## Working out if the device is present
+### Working out if the device is present
 Apart from using the above commands to see if the device is present, I cna use the lsusb command to see what USB devices are on the system. First I will look at the devices with the USB unplugged :
 ```
 pi@veho600:~ $ lsusb
@@ -136,6 +136,36 @@ Bus 001 Device 001: ID 1d6b:0002 Linux Foundation 2.0 root hub
 ```
 The difference in output is the first line ```Bus 001 Device 005: ID 1a86:7523 QinHeng Electronics CH340 serial converter``` and now I know that the printer serial device is registering with the system.
 
+### USB connections, looking at the Linux kenrel log (the kernel ring buffer) and intermittent connections
+
+To see a log of when the usb device plugs in and out we can print out the kernel ring buffer. This can be helpful to look for intermittent connections. Start by clearing out the ring buffer before you plug in the USB device using the command ```dmesg -c``` where "-c" stands for clear history and you may have to add the ```sudo``` command to invoke super user permissions :
+```
+dmesg -c
+```
+If I unplug the USB device it looks like so :
+```
+pi@veho600:~ $ sudo dmesg -c
+[  550.279869] ch341-uart ttyUSB0: usb_serial_generic_read_bulk_callback - urb stopped: -32
+[  550.279989] ch341-uart ttyUSB0: usb_serial_generic_read_bulk_callback - urb stopped: -32
+[  550.333153] usb 1-1.2: USB disconnect, device number 4
+[  550.335337] ch341-uart ttyUSB0: ch341-uart converter now disconnected from ttyUSB0
+[  550.335451] ch341 1-1.2:1.0: device disconnected
+```
+The ```ttyUSB0``` device was disconnected from the system. Whenever the serial USB device disconnects it will print out this message in the kernel ring buffer.
+
+Now I plug in my USB device and it looks like this :
+```
+pi@veho600:~ $ sudo dmesg -c
+[  616.416522] usb 1-1.2: new full-speed USB device number 5 using dwc_otg
+[  616.549636] usb 1-1.2: New USB device found, idVendor=1a86, idProduct=7523, bcdDevice= 2.64
+[  616.549675] usb 1-1.2: New USB device strings: Mfr=0, Product=2, SerialNumber=0
+[  616.549691] usb 1-1.2: Product: USB Serial
+[  616.550703] ch341 1-1.2:1.0: ch341-uart converter detected
+[  616.553033] usb 1-1.2: ch341-uart converter now attached to ttyUSB1
+```
+I can see that the ch341 uart USB device was plugged in and attached to the device ```/dev/ttyUSB1```. As I used the "-c" flag this log was cleared form the ring buffer.
+
+If you have intermittent USB connections, you will see these connect and disconnection messages in the kernel ring buffer using the ```dmesg``` command.
 
 ## Getting your first layer right
 
