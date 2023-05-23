@@ -92,6 +92,7 @@ Click "Profiles" and "Import Profiles".
 
 # Calibrating and problem solving 
 ## Finding the serial device
+This was written for a Linux system, but may apply to Mac systems as well.
 
 On this system, the serial device is connected with USB. The standard mac and Linux commands to look at the usb devices is lsusb. When the device is plugged in it will appear on the system in the path /dev/ttyUSB* where * is the number. If I long list all ttyUSB* devices on my system I get the one serial USB device which is on my printer (using the ```ls -l /dev/ttyUSB*``` command) and this is what it looks like :
 ```
