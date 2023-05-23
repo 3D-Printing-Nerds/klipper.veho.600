@@ -152,7 +152,7 @@ pi@veho600:~ $ sudo dmesg -c
 [  550.335337] ch341-uart ttyUSB0: ch341-uart converter now disconnected from ttyUSB0
 [  550.335451] ch341 1-1.2:1.0: device disconnected
 ```
-The ```ttyUSB0``` device was disconnected from the system. Whenever the serial USB device disconnects it will print out this message in the kernel ring buffer.
+The ```ttyUSB0``` device was disconnected from the system. Whenever the serial USB device disconnects it will print out this message in the kernel ring buffer. As I used the "-c" flag this log was cleared form the ring buffer.
 
 Now I plug in my USB device and it looks like this :
 ```
@@ -164,7 +164,7 @@ pi@veho600:~ $ sudo dmesg -c
 [  616.550703] ch341 1-1.2:1.0: ch341-uart converter detected
 [  616.553033] usb 1-1.2: ch341-uart converter now attached to ttyUSB1
 ```
-I can see that the ch341 uart USB device was plugged in and attached to the device ```/dev/ttyUSB1```. As I used the "-c" flag this log was cleared form the ring buffer.
+I can see that the ch341 uart USB device was plugged in and attached to the device ```/dev/ttyUSB1```.
 
 If you have intermittent USB connections, you will see these connect and disconnection messages in the kernel ring buffer using the ```dmesg``` command.
 
