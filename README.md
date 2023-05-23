@@ -120,7 +120,7 @@ total 0
 lrwxrwxrwx 1 root root 13 May 23 22:12 platform-3f980000.usb-usb-0:1.2:1.0-port0 -> ../../ttyUSB0
 ```
 ### Working out if the 3d printer device is present
-Apart from using the above commands to see if the device is present, I cna use the lsusb command to see what USB devices are on the system. First I will look at the devices with the USB unplugged :
+Apart from using the above commands to see if the device is present, I can use the lsusb command to see what USB devices are on the system. First I will look at the devices with the USB unplugged :
 ```
 pi@veho600:~ $ lsusb
 Bus 001 Device 003: ID 0424:ec00 Microchip Technology, Inc. (formerly SMSC) SMSC9512/9514 Fast Ethernet Adapter
