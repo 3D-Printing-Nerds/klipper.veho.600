@@ -91,6 +91,51 @@ Click "Profiles" and "Import Profiles".
 * Manage printers -> machine settings -> Extruder 1 -> Nozzle Size = 0.8 mm
 
 # Calibrating and problem solving 
+## finding the serial device
+
+On this system, the serial device is connected with USB. The standard mac and Linux commands to look at the usb devices is lsusb. When the device is plugged in it will appear on the system in the path /dev/ttyUSB* where * is the number. If I long list all ttyUSB* devices on my system I get the one serial USB device which is on my printer (using the ```ls -l /dev/ttyUSB*``` command) and this is what it looks like :
+```
+pi@veho600:~ $ ls -l /dev/ttyUSB*
+crw-rw---- 1 root dialout 188, 0 May 23 22:14 /dev/ttyUSB0
+```
+I can see that my serial device is ttyUSB0 on the path : /dev/ttyUSB0. On modern Linux the USB serial devices are linked by name and by id in the /dev/serial directory. I can see them by listing (again using the ```ls /dev/serial/*``` command to see subdirectories of /dev/serial) :
+```
+pi@veho600:~ $ ls /dev/serial/*
+/dev/serial/by-id:
+usb-1a86_USB_Serial-if00-port0
+
+/dev/serial/by-path:
+platform-3f980000.usb-usb-0:1.2:1.0-port0
+```
+But if I look with the long list, I can see that these devices point to /dev/ttyUSB0 :
+```
+pi@veho600:~ $ ls -l /dev/serial/*
+/dev/serial/by-id:
+total 0
+lrwxrwxrwx 1 root root 13 May 23 22:12 usb-1a86_USB_Serial-if00-port0 -> ../../ttyUSB0
+
+/dev/serial/by-path:
+total 0
+lrwxrwxrwx 1 root root 13 May 23 22:12 platform-3f980000.usb-usb-0:1.2:1.0-port0 -> ../../ttyUSB0
+```
+## Working out if the device is present
+Apart from using the above commands to see if the device is present, I cna use the lsusb command to see what USB devices are on the system. First I will look at the devices with the USB unplugged :
+```
+pi@veho600:~ $ lsusb
+Bus 001 Device 003: ID 0424:ec00 Microchip Technology, Inc. (formerly SMSC) SMSC9512/9514 Fast Ethernet Adapter
+Bus 001 Device 002: ID 0424:9514 Microchip Technology, Inc. (formerly SMSC) SMC9514 Hub
+Bus 001 Device 001: ID 1d6b:0002 Linux Foundation 2.0 root hub
+```
+Now I want to see whether the printer device registers once it is plugged in. I plug in the printer and lsusb again :
+```
+pi@veho600:~ $ lsusb
+Bus 001 Device 005: ID 1a86:7523 QinHeng Electronics CH340 serial converter
+Bus 001 Device 003: ID 0424:ec00 Microchip Technology, Inc. (formerly SMSC) SMSC9512/9514 Fast Ethernet Adapter
+Bus 001 Device 002: ID 0424:9514 Microchip Technology, Inc. (formerly SMSC) SMC9514 Hub
+Bus 001 Device 001: ID 1d6b:0002 Linux Foundation 2.0 root hub
+```
+The difference in output is the first line ```Bus 001 Device 005: ID 1a86:7523 QinHeng Electronics CH340 serial converter``` and now I know that the printer serial device is registering with the system.
+
 
 ## Getting your first layer right
 
