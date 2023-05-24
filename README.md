@@ -175,7 +175,9 @@ Get a standard cube from the cura "calibration shapes" plugin. Make the followin
 * initial layer height of 0.3
 
 # for the developers
-The reference marlin code is available here : https://github.com/tronxy3d/F4xx-SIM480x320
+The reference the original marlin code is available here : https://github.com/tronxy3d/F4xx-SIM480x320
+We will build the firmware with information from this guide for the F446 (V10 and V6-191121) motherboards - assuming this is installed on your system :
+https://tronxy.fandom.com/wiki/Installing_Klipper#Installing_Klipper
 
 ## Building the firmware
 ```
