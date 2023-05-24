@@ -189,7 +189,9 @@ Using the menu, select the following :
 * STMicroelectronics STM32
 * STM32F446
 * 64KiB bootloader
-* USB (on PA11/PA12)
+* 8 MHz crystal
+* USB (on PA10/PA9)
+* 2500000 baud rate
 You're now ready to build. Press 'Q' and 'Y' to exit and save. Now :
 ```
 make
