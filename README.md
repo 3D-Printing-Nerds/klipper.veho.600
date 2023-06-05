@@ -90,6 +90,18 @@ Click "Profiles" and "Import Profiles".
 
 * Manage printers -> machine settings -> Extruder 1 -> Nozzle Size = 0.8 mm
 
+# Replacement parts
+
+## Y-axis motor
+BIQU 57 Stepper Motor Nema 23 57BYGH Motor. In the printer.cfg file, you will need to switch to the reversed y-axis motor like so :
+```
+#[include stepperYStock.cfg] # stock veho stepper
+[include stepperYDirRev.cfg] # direction reversed y stepper
+```
+
+## X-axis motor
+LDO-42STH48-2504AC
+
 # Calibrating and problem solving 
 ## Finding the serial device
 This was written for a Linux system, but may apply to Mac systems as well.
