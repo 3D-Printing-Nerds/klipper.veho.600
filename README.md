@@ -21,6 +21,14 @@ cd klipper.veho-600/config
 scp *  pi@veho600.local:printer_data/config/
 ```
 
+## NOTE : if you are running a stock veho machine
+
+I have changed my z-axis threads to ball screws and the y-axis stepper is reversed. If you are running stock, then you will want to do the following :
+
+* Go through printer.cfg and search for 'stock' and check whether you need to re-enable stock config
+* Go through homing.cfg and search for 'stock' and check whether you need to re-enable stock config
+
+## restart klipper
 Now in the webapp, go to "MACHINE" and restart klipper.
 
 # Install the firmware
@@ -102,7 +110,7 @@ BIQU 57 Stepper Motor Nema 23 57BYGH Motor. In the printer.cfg file, you will ne
 ## X-axis motor
 LDO-42STH48-2504AC
 
-# Calibrating and problem solving 
+# Calibrating and problem solving
 ## Finding the serial device
 This was written for a Linux system, but may apply to Mac systems as well.
 
