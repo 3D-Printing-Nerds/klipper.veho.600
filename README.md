@@ -56,7 +56,7 @@ Home axis :
 ```
 G28
 ```
-Perform an probe calibration. Raise the bed with a piece of A4 paper between the bed and the nozzle until the paper is a little resistive and then accept.
+Perform an probe calibration. Raise the bed with a 0.1 mm spacer (e.g. a steel spacer) between the bed and the nozzle until the paper is a little resistive and then accept.
 ```
 PROBE_CALIBRATE
 SAVE_CONFIG
