@@ -21,12 +21,14 @@ cd klipper.veho-600/config
 scp *  pi@veho600.local:printer_data/config/
 ```
 
-## NOTE : if you are running a stock veho machine
+These config files are stup for the stock veho machine (non-ballscrew)
 
-I have changed my z-axis threads to ball screws and the y-axis stepper is reversed. If you are running stock, then you will want to do the following :
+## NOTE : if you are running a non-stock veho machine
 
-* Go through printer.cfg and search for 'stock' and check whether you need to re-enable stock config
-* Go through homing.cfg and search for 'stock' and check whether you need to re-enable stock config
+I have changed my z-axis threads to ball screws and the y-axis stepper is reversed. If you are running a non-stock machine, then you will want to do the following :
+
+* Go through printer.cfg and search for 'non-stock' and check whether you need to re-enable non-stock config
+* Go through homing.cfg and search for 'non-stock' and check whether you need to re-enable non-stock config
 
 ## restart klipper
 Now in the webapp, go to "MACHINE" and restart klipper.
